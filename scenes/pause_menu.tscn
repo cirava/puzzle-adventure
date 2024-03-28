@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://bj8fc8dxmvavw"]
+
+[ext_resource type="Script" path="res://scripts/scenes/pause_menu.gd" id="1_g6dm2"]
+[ext_resource type="Texture2D" uid="uid://ccvicfvf0kt5n" path="res://textures/ui/title.png" id="2_hxond"]
+[ext_resource type="Texture2D" uid="uid://7xyywpo4ay55" path="res://textures/ui/Untitled.png" id="2_nyuku"]
+[ext_resource type="Theme" uid="uid://bmdo5m16pq124" path="res://misc/title_button.tres" id="3_n838x"]
+[ext_resource type="FontFile" uid="uid://b8gaixbox0s7v" path="res://misc/FreeSans.otf" id="6_wrplb"]
+[ext_resource type="AudioStream" uid="uid://ci7l5lb5nr4dx" path="res://sounds/uiYes.mp3" id="7_i1bot"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_03pue"]
+
+[sub_resource type="Theme" id="Theme_0ykog"]
+default_font = ExtResource("6_wrplb")
+default_font_size = 36
+
+[node name="pause_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g6dm2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nyuku")
+offset = Vector2(480, 360)
+
+[node name="Title" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_03pue")
+position = Vector2(450, 135)
+scale = Vector2(0.305208, 0.3025)
+texture = ExtResource("2_hxond")
+
+[node name="Menu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 590.0
+offset_right = 596.0
+offset_bottom = 651.0
+theme = ExtResource("3_n838x")
+text = "Menu"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 357.0
+offset_right = 740.0
+offset_bottom = 554.0
+theme = SubResource("Theme_0ykog")
+text = "Progress is NOT saved.
+If you go back to the menu you're
+restarting.
+- J"
+horizontal_alignment = 1
+
+[node name="uiYes" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_i1bot")
+
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

@@ -1,0 +1,268 @@
+[gd_scene load_steps=30 format=3 uid="uid://cs53rik5iifpu"]
+
+[ext_resource type="Script" path="res://scripts/scenes/title_screen.gd" id="1_w6pa7"]
+[ext_resource type="PackedScene" uid="uid://mx1jefb7gsey" path="res://scenes/version_text.tscn" id="2_0g4bx"]
+[ext_resource type="Theme" uid="uid://bmdo5m16pq124" path="res://misc/title_button.tres" id="4_pmu2x"]
+[ext_resource type="FontFile" uid="uid://b8gaixbox0s7v" path="res://misc/FreeSans.otf" id="5_m2ocb"]
+[ext_resource type="Texture2D" uid="uid://7xyywpo4ay55" path="res://textures/ui/Untitled.png" id="6_6g32o"]
+[ext_resource type="FontFile" uid="uid://6aunnp6cnxm2" path="res://misc/ZCOOLKuaiLe-Regular.ttf" id="7_eugcv"]
+[ext_resource type="Theme" uid="uid://dafbhlcq2m7jt" path="res://misc/small button.tres" id="8_ca01s"]
+[ext_resource type="Texture2D" uid="uid://ccvicfvf0kt5n" path="res://textures/ui/title.png" id="9_blooa"]
+[ext_resource type="PackedScene" uid="uid://bortjurat32j2" path="res://scenes/gem.tscn" id="9_fdb8f"]
+[ext_resource type="AudioStream" uid="uid://c5r68vpj78g5j" path="res://sounds/uiNo.mp3" id="11_4vng1"]
+[ext_resource type="AudioStream" uid="uid://ci7l5lb5nr4dx" path="res://sounds/uiYes.mp3" id="12_6k0tl"]
+[ext_resource type="Texture2D" uid="uid://j8q6dxbl42x1" path="res://textures/lv 1/skybox.png" id="12_cet62"]
+[ext_resource type="AudioStream" uid="uid://bgc4bt5xhb1nx" path="res://sounds/music/title.mp3" id="13_e2prv"]
+[ext_resource type="Material" uid="uid://b0cffonvpudv5" path="res://textures/lv 1/grass.tres" id="13_vplxo"]
+[ext_resource type="Material" uid="uid://u47df34bnjoj" path="res://textures/lv 1/rock.tres" id="14_yyyfg"]
+[ext_resource type="PackedScene" uid="uid://jqh4cmursrhv" path="res://scenes/coin.tscn" id="15_vg5sn"]
+
+[sub_resource type="Gradient" id="Gradient_tw1n4"]
+offsets = PackedFloat32Array(0, 0.996805)
+colors = PackedColorArray(0, 0, 0.227451, 1, 0.370726, 0.0205235, 0.487588, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ef6pt"]
+gradient = SubResource("Gradient_tw1n4")
+fill_from = Vector2(1, 0.0213675)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m3biv"]
+texture = SubResource("GradientTexture2D_ef6pt")
+
+[sub_resource type="Theme" id="Theme_q3d7t"]
+default_font = ExtResource("5_m2ocb")
+default_font_size = 36
+Label/styles/normal = SubResource("StyleBoxTexture_m3biv")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_acinf"]
+
+[sub_resource type="Theme" id="Theme_hfb2v"]
+default_font = ExtResource("7_eugcv")
+default_font_size = 36
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/outline_size = 0
+Label/constants/shadow_outline_size = 0
+
+[sub_resource type="Theme" id="Theme_m85hh"]
+default_font = ExtResource("5_m2ocb")
+default_font_size = 18
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u17u2"]
+panorama = ExtResource("12_cet62")
+filter = false
+
+[sub_resource type="Sky" id="Sky_b3xc2"]
+sky_material = SubResource("PanoramaSkyMaterial_u17u2")
+
+[sub_resource type="Environment" id="Environment_bub7o"]
+background_mode = 2
+sky = SubResource("Sky_b3xc2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_44kcm"]
+material = ExtResource("13_vplxo")
+size = Vector2(10, 8)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j5olm"]
+material = ExtResource("14_yyyfg")
+size = Vector2(10, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rtpdh"]
+material = ExtResource("14_yyyfg")
+size = Vector2(10, 10)
+
+[node name="title_screen" type="Node3D"]
+script = ExtResource("1_w6pa7")
+
+[node name="interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ExtrasErr" type="Label" parent="interface"]
+z_index = 4
+layout_mode = 0
+offset_left = 187.0
+offset_top = 411.5
+offset_right = 808.0
+offset_bottom = 508.5
+theme = SubResource("Theme_q3d7t")
+text = "Not available yet
+You need 11 gems to unlock this menu."
+horizontal_alignment = 1
+
+[node name="VersionText" parent="interface" instance=ExtResource("2_0g4bx")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Title" type="Sprite2D" parent="interface"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_acinf")
+position = Vector2(462, 115.5)
+scale = Vector2(0.305208, 0.3025)
+texture = ExtResource("9_blooa")
+
+[node name="ChangeLog" type="Control" parent="interface"]
+anchors_preset = 0
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="interface/ChangeLog"]
+position = Vector2(490.75, 497.625)
+scale = Vector2(0.472396, 0.385069)
+texture = ExtResource("6_6g32o")
+
+[node name="Label" type="Label" parent="interface/ChangeLog"]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 376.0
+offset_right = 489.0
+offset_bottom = 426.0
+theme = SubResource("Theme_hfb2v")
+text = "Change Log"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="interface/ChangeLog"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 425.0
+offset_right = 667.0
+offset_bottom = 586.0
+theme = SubResource("Theme_m85hh")
+bbcode_enabled = true
+
+[node name="Button" type="Button" parent="interface/ChangeLog"]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 599.0
+offset_right = 526.0
+offset_bottom = 629.0
+theme = ExtResource("8_ca01s")
+text = "Close"
+
+[node name="main" type="Control" parent="interface"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Play" type="Button" parent="interface/main"]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 300.5
+offset_right = 608.0
+offset_bottom = 361.5
+theme = ExtResource("4_pmu2x")
+text = "Play"
+
+[node name="Options" type="Button" parent="interface/main"]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 390.5
+offset_right = 608.0
+offset_bottom = 451.5
+theme = ExtResource("4_pmu2x")
+text = "Options"
+
+[node name="Extras" type="Button" parent="interface/main"]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 480.5
+offset_right = 608.0
+offset_bottom = 541.5
+theme = ExtResource("4_pmu2x")
+text = "Extras"
+
+[node name="Quit" type="Button" parent="interface/main"]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 570.5
+offset_right = 608.0
+offset_bottom = 631.5
+theme = ExtResource("4_pmu2x")
+text = "Quit"
+
+[node name="options" type="Control" parent="interface"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ClearSave" type="Button" parent="interface/options"]
+custom_minimum_size = Vector2(236, 61)
+layout_mode = 0
+offset_left = 372.0
+offset_top = 300.5
+offset_right = 608.0
+offset_bottom = 361.5
+theme = ExtResource("4_pmu2x")
+text = "clearSave"
+
+[node name="Back" type="Button" parent="interface/options"]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 390.5
+offset_right = 608.0
+offset_bottom = 451.5
+theme = ExtResource("4_pmu2x")
+text = "Back"
+
+[node name="fakeLevel" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="fakeLevel"]
+environment = SubResource("Environment_bub7o")
+
+[node name="grass" type="MeshInstance3D" parent="fakeLevel"]
+mesh = SubResource("PlaneMesh_44kcm")
+
+[node name="rock1" type="MeshInstance3D" parent="fakeLevel"]
+transform = Transform3D(0.755326, 0.655348, -0.00103672, -0.236653, 0.27128, -0.932954, -0.611128, 0.70493, 0.359995, -2.4932, -2.57039, 0.196341)
+mesh = SubResource("PlaneMesh_j5olm")
+
+[node name="piece" parent="fakeLevel" instance=ExtResource("15_vg5sn")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.931, 0.5, 0.264926)
+
+[node name="piece2" parent="fakeLevel" instance=ExtResource("9_fdb8f")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.26902, 0.5, 0.769496)
+
+[node name="rock2" type="MeshInstance3D" parent="fakeLevel"]
+transform = Transform3D(0.875642, -0.482572, 0.0193905, -6.67536e-18, -0.0401492, -0.999194, 0.482962, 0.874936, -0.0351563, 3.18467, -2.77346, -0.72515)
+mesh = SubResource("PlaneMesh_rtpdh")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.27618, 9.24235)
+fov = 40.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.725398, 6.71998e-08, 0.688329, -0.278827, 0.914282, 0.293843, -0.629327, -0.405078, 0.663219, 4.25746, 2.63388, 5.05346)
+
+[node name="uiNo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_4vng1")
+
+[node name="uiYes" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_6k0tl")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_e2prv")
+volume_db = -6.768
+
+[node name="TimerHalf" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="TimerFive" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="pressed" from="interface/ChangeLog/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="interface/main/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="interface/main/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="interface/main/Extras" to="." method="_on_extras_pressed"]
+[connection signal="pressed" from="interface/main/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="interface/options/ClearSave" to="." method="_on_clear_save_pressed"]
+[connection signal="pressed" from="interface/options/Back" to="." method="_on_back_pressed"]
+[connection signal="timeout" from="TimerHalf" to="." method="_on_timer_half_timeout"]
+[connection signal="timeout" from="TimerHalf" to="." method="_on_timer_5_timeout"]
+[connection signal="timeout" from="TimerFive" to="." method="_on_timer_five_timeout"]

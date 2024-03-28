@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7gog6n7gl8i7"]
+
+[ext_resource type="Script" path="res://scripts/scenes/traverser.gd" id="1_tfah4"]
+[ext_resource type="PackedScene" uid="uid://s0wdneswscq6" path="res://scenes/hud.tscn" id="2_1e1vd"]
+[ext_resource type="PackedScene" uid="uid://mx1jefb7gsey" path="res://scenes/version_text.tscn" id="2_roka1"]
+[ext_resource type="AudioStream" uid="uid://djhguq2r7tli6" path="res://sounds/jumpBetter.mp3" id="3_b7e83"]
+[ext_resource type="PackedScene" uid="uid://bj8fc8dxmvavw" path="res://scenes/pause_menu.tscn" id="3_w0mem"]
+[ext_resource type="PackedScene" uid="uid://dxrha0aqw5v3d" path="res://models/traverser.glb" id="4_pvc4m"]
+[ext_resource type="AudioStream" uid="uid://t6xqpu4ulx3i" path="res://sounds/step_1.mp3" id="5_xb6q5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gqk25"]
+size = Vector3(1, 1.92297, 1)
+
+[sub_resource type="GDScript" id="GDScript_ata8b"]
+script/source = "extends Camera3D
+
+var distance = 4.0
+var height = 2.0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	set_physics_process(true);
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta):
+	var target = get_parent().get_global_transform().origin
+	var pos = get_global_transform().origin
+	var up = Vector3(0,1,0)
+	
+	var offset = pos - target
+	
+	offset = offset.normalized()*distance
+	offset.y = height
+	
+	pos = target + offset
+	
+
+"
+
+[node name="Traverser" type="CharacterBody3D"]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0, 0)
+script = ExtResource("1_tfah4")
+
+[node name="VersionText" parent="." instance=ExtResource("2_roka1")]
+z_index = 15
+
+[node name="hud" parent="." instance=ExtResource("2_1e1vd")]
+
+[node name="pause_menu" parent="." instance=ExtResource("3_w0mem")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, -1.21652e-31, 0, -1.21652e-31, 1, 0, 0, 0, 1, 4.74654e-18, -0.0249045, -4.74654e-18)
+shape = SubResource("BoxShape3D_gqk25")
+
+[node name="CamOrigin" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.543807, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamOrigin"]
+transform = Transform3D(1, 1.28819e-16, 2.2551e-16, -2.2551e-16, 0.86139, 0.507944, -1.28819e-16, -0.507944, 0.86139, -1.96435e-16, -0.563194, 1.96435e-16)
+spring_length = 4.0
+
+[node name="Camera3D" type="Camera3D" parent="CamOrigin/SpringArm3D"]
+transform = Transform3D(1, -1.50609e-16, -1.0291e-16, 1.0291e-16, 0.931622, -0.36343, 1.50609e-16, 0.36343, 0.931622, -6.35758e-16, 0.0458673, 4.00825)
+fov = 59.1
+script = SubResource("GDScript_ata8b")
+
+[node name="jumpSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_b7e83")
+volume_db = -10.0
+
+[node name="traverser" parent="." instance=ExtResource("4_pvc4m")]
+transform = Transform3D(-0.32, 1.11612e-16, -2.79753e-08, 1.11612e-16, 0.32, -1.11612e-16, 2.79753e-08, -1.11612e-16, -0.32, -3.4749e-16, -0.99628, 3.4749e-16)
+
+[node name="stepSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_xb6q5")
+volume_db = -23.787
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_gqk25")

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1bsc7lowvskl"]
+
+[ext_resource type="FontFile" uid="uid://6aunnp6cnxm2" path="res://misc/ZCOOLKuaiLe-Regular.ttf" id="1_6csdb"]
+
+[sub_resource type="Theme" id="Theme_konsk"]
+default_font = ExtResource("1_6csdb")
+default_font_size = 60
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -31.0
+offset_top = -26.0
+offset_right = 1021.0
+offset_bottom = 749.0
+color = Color(0.25098, 0.25098, 0.25098, 1)
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 669.0
+offset_top = 645.0
+offset_right = 936.0
+offset_bottom = 706.0
+theme = SubResource("Theme_konsk")
+text = "Loading..."

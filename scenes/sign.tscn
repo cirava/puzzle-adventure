@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://cs3oca5bioqtj"]
+
+[ext_resource type="Texture2D" uid="uid://eqx5puigoek0" path="res://textures/ui/interact.png" id="1_3gld6"]
+[ext_resource type="Texture2D" uid="uid://o8urcq3barlf" path="res://textures/ui/signText.png" id="3_u8xw8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a546a"]
+albedo_color = Color(0.411765, 0.184314, 0.054902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gctpw"]
+material = SubResource("StandardMaterial3D_a546a")
+size = Vector3(0.1, 0.8, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u52h2"]
+albedo_color = Color(0.47451, 0.32549, 0.101961, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lcpib"]
+material = SubResource("StandardMaterial3D_u52h2")
+size = Vector3(0.2, 0.7, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b6t3s"]
+size = Vector3(5, 2.797, 5)
+
+[sub_resource type="Theme" id="Theme_5ffud"]
+default_font_size = 24
+Label/colors/font_color = Color(0, 0, 0, 1)
+
+[node name="sign1" type="Area3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_gctpw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.607046, 0)
+mesh = SubResource("BoxMesh_lcpib")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.186, 0)
+billboard = 1
+texture = ExtResource("1_3gld6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05787, 0)
+shape = SubResource("BoxShape3D_b6t3s")
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ui"]
+texture_filter = 1
+position = Vector2(733, 171)
+scale = Vector2(1.72, 1.66043)
+texture = ExtResource("3_u8xw8")
+
+[node name="Label2" type="Label" parent="ui"]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 73.0
+offset_right = 897.0
+offset_bottom = 264.0
+theme = SubResource("Theme_5ffud")
+autowrap_mode = 2
+text_overrun_behavior = 3

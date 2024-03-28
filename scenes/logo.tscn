@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyjq10kinh04e"]
+
+[ext_resource type="Script" path="res://logo.gd" id="1_82rfa"]
+[ext_resource type="Texture2D" uid="uid://ctkj2l2iqnpoy" path="res://textures/ui/Logo.png" id="2_ltxtu"]
+[ext_resource type="AudioStream" uid="uid://c8fpk4ptl4dim" path="res://sounds/logo.mp3" id="3_l3mub"]
+
+[node name="logo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_82rfa")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 961.0
+offset_bottom = 720.0
+color = Color(0.25098, 0.25098, 0.25098, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(480, 360)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ltxtu")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_l3mub")

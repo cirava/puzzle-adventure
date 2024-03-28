@@ -1,0 +1,34 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dafbhlcq2m7jt"]
+
+[ext_resource type="StyleBox" uid="uid://epb6pdwy76wm" path="res://misc/new_style_box_texture.tres" id="1_aqit2"]
+[ext_resource type="FontFile" uid="uid://6aunnp6cnxm2" path="res://misc/ZCOOLKuaiLe-Regular.ttf" id="2_kll3l"]
+
+[sub_resource type="Gradient" id="Gradient_jtp0h"]
+colors = PackedColorArray(0.39659, 0.753443, 0.979814, 1, 1, 0.784314, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ry4eb"]
+gradient = SubResource("Gradient_jtp0h")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_udps4"]
+texture = SubResource("GradientTexture2D_ry4eb")
+
+[sub_resource type="Gradient" id="Gradient_jd4u1"]
+offsets = PackedFloat32Array(0.00319489, 1)
+colors = PackedColorArray(1, 0.915991, 0.620344, 1, 1, 1, 0.945098, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_susvd"]
+gradient = SubResource("Gradient_jd4u1")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bv7t7"]
+texture = SubResource("GradientTexture2D_susvd")
+
+[resource]
+default_font = ExtResource("2_kll3l")
+default_font_size = 22
+Button/styles/hover = SubResource("StyleBoxTexture_udps4")
+Button/styles/normal = ExtResource("1_aqit2")
+Button/styles/pressed = SubResource("StyleBoxTexture_bv7t7")

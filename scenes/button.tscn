@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://beifj1y5yx2vq"]
+
+[ext_resource type="Texture2D" uid="uid://eqx5puigoek0" path="res://textures/ui/interact.png" id="1_c6quk"]
+[ext_resource type="AudioStream" uid="uid://csl474t3lyp1i" path="res://sounds/buttonClick.mp3" id="2_xwgd3"]
+[ext_resource type="AudioStream" uid="uid://dowi32ajyvcvs" path="res://sounds/buttonClickNorm.mp3" id="3_getxd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q7pj0"]
+size = Vector3(2.48833, 2.22961, 2.28289)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1v8c"]
+albedo_color = Color(0.54902, 0.54902, 0.54902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4bmmg"]
+material = SubResource("StandardMaterial3D_v1v8c")
+size = Vector3(0.25, 0.25, 0.125)
+
+[node name="button" type="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.399284, 0.231506, 1.08438)
+shape = SubResource("BoxShape3D_q7pj0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_4bmmg")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4091, 0.612023)
+billboard = 1
+texture = ExtResource("1_c6quk")
+
+[node name="clickCreep" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_xwgd3")
+volume_db = -19.368
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_getxd")
